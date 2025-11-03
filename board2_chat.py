@@ -7,25 +7,29 @@ import serial
 import sys
 import time
 
-
-
+# Connect to board
+print("Starting Board 2 Chat Program...")
 # Open the serial port (ensure the same port and baud rate as the writing program)
 s = serial.Serial('COM6', 115200, timeout=1)
-
 time.sleep(2)  # Give the device some time to start up
-s.write(str.encode("a[CD]\n"))  # Set the device address to AB
-time.sleep(0.1)
 
+# Set device address
+device_address = input("Enter desired personal device address (e.g., AB, CD): ").strip().upper()
+s.write(str.encode("a[" + device_address + "]\n"))
+time.sleep(0.1)
+print("Address set:")
 s.write(str.encode("a\n"))  # Print the device address to verify it was set correctly
 time.sleep(0.1)
 
+# Configure board
 s.write(str.encode("c[1,0,5]\n"))  # Set number of retransmissions to 5
 time.sleep(0.1)
-
 s.write(str.encode("c[0,1,30]\n"))  # Set FEC threshold to 30
 time.sleep(0.1)
 
+
 # Read from the device’s serial port
+print("Listening for incoming messages...")
 try:
     message = ""
     while True:  # Continuously read data
