@@ -4,16 +4,16 @@
     # Rashi Ojha (25-...)
 
 import serial
-import time
 import sys
-import serial
+import time
+
 
 
 # Open the serial port (ensure the same port and baud rate as the writing program)
-s = serial.Serial('COM5', 115200, timeout=1)
+s = serial.Serial('COM6', 115200, timeout=1)
 
 time.sleep(2)  # Give the device some time to start up
-s.write(str.encode("a[AB]\n"))  # Set the device address to AB
+s.write(str.encode("a[CD]\n"))  # Set the device address to AB
 time.sleep(0.1)
 
 s.write(str.encode("a\n"))  # Print the device address to verify it was set correctly
@@ -25,10 +25,7 @@ time.sleep(0.1)
 s.write(str.encode("c[0,1,30]\n"))  # Set FEC threshold to 30
 time.sleep(0.1)
 
-s.write(str.encode("m[hello world!\0,CD]\n")) #send message to device with address CD  
-
-
-#read from the device’s serial port (should be done in a separate program):  
+# Read from the device’s serial port
 try:
     message = ""
     while True:  # Continuously read data
