@@ -5,4 +5,4 @@ pip install pyserial
 
 ## Contributors
 Jack Morby (25-941-373)
-Rashi Ojha (25-...)
+Rashi Ojha (25-910-506)
