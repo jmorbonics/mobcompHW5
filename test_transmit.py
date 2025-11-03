@@ -27,7 +27,7 @@ time.sleep(0.1)
 
 s.write(str.encode("m[hello world!\0,CD]\n")) #send message to device with address CD  
 
-
+print("Hello there")
 #read from the device’s serial port (should be done in a separate program):  
 try:
     message = ""
@@ -37,6 +37,10 @@ try:
             val = chr(byte[0])  # Convert the byte to a character
             if val == '\n':  # If the termination character is received
                 print(message)  # Print the complete message
+                if message == "m[D]":
+                    print("Transmission done")
+                    message = ""
+                    break
                 message = ""  # Reset the message buffer
             else:
                 message += val  # Append the character to the message buffer
