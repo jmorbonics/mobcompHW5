@@ -9,7 +9,7 @@ def main():
     target_address, serial_connection = setup("COM5")
 
     while(True):
-        transmit(target_address, serial_connection)
+        received_message = transmit(target_address, serial_connection)
         time.sleep(0.5)
         listen(serial_connection)
         time.sleep(0.5)

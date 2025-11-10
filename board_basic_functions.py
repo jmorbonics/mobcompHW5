@@ -102,5 +102,17 @@ def transmit(target, s):
         s.close()  # Close the serial port on exit
         sys.exit()
 
+# Send message
+def transmit_message(target, s, message):
+    print("Beginning message transmission process...")
+    try:
+        full_message = "m[" + message.hex() + "\0," + target + "]\n"
+        s.write(str.encode(full_message))
+        listen_for(s, "m[D]")  # Listen to arduino for transmission termination 
+    except KeyboardInterrupt:
+        print("\nExiting...")
+        s.close()  # Close the serial port on exit
+        sys.exit()
+
 if __name__ == "__main__":
     print("This is a module for listening to serial ports.")

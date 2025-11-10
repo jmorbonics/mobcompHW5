@@ -6,7 +6,7 @@ import time
 
 def main():
     print("Booting up board 2")
-    target_address, serial_connection = setup("COM6")
+    target_address, serial_connection = setup("COM5")
     
     while(True):
         print("Starting listening")
